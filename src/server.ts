@@ -1,4 +1,5 @@
 import"dotenv/config";
+import { handleFakeLtp } from './routesFakeLtp';
 import express from"express";
 import cors from"cors";
 import{startTicker}from"./kiteClient";
@@ -6,5 +7,5 @@ import{handleTvSignal}from"./routesTv";
 import{handleGetState}from"./routesState";
 import{handleTrade}from"./routesTrade";
 const app=express();app.use(cors());app.use(express.json());
-app.post("/tv-signal",handleTvSignal);app.get("/state",handleGetState);app.post("/trade",handleTrade);
+app.post("/tv-signal",handleTvSignal);app.get("/state",handleGetState);app.post("/trade",handleTrade);app.post('/fake-ltp', handleFakeLtp);
 const port = Number(process.env["PORT"] || 3000);app.listen(port,()=>console.log("server on",port));startTicker();
